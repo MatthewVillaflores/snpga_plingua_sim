@@ -1,0 +1,468 @@
+
+***********************************************
+
+    CONFIGURATION: 0
+    TIME: 0.0 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 25403
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: #
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: #
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: #
+
+-----------------------------------------------
+
+    STEP: 1
+
+    Rules selected for CELL ID: 1, Label: buff1
+    1 * #1 [a]'buff1 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 1
+    TIME: 0.015 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 25055
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: #
+
+    CELL ID: 1, Label: buff1
+    Multiset: #
+
+    CELL ID: 2, Label: buff2
+    Multiset: a
+
+    CELL ID: 3, Label: nr0
+    Multiset: a
+
+    CELL ID: 4, Label: nr1
+    Multiset: #
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: #
+
+-----------------------------------------------
+
+    STEP: 2
+
+    Rules selected for CELL ID: 2, Label: buff2
+    1 * #2 [a]'buff2 --> [a]
+
+    Rules selected for CELL ID: 3, Label: nr0
+    1 * #3 [a]'nr0 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 2
+    TIME: 0.026 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 24707
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: #
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: #
+
+-----------------------------------------------
+
+    STEP: 3
+
+    Rules selected for CELL ID: 1, Label: buff1
+    1 * #1 [a]'buff1 --> [a]
+
+    Rules selected for CELL ID: 4, Label: nr1
+    1 * #4 [a]'nr1 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 3
+    TIME: 0.031 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 24358
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: #
+
+    CELL ID: 1, Label: buff1
+    Multiset: #
+
+    CELL ID: 2, Label: buff2
+    Multiset: a
+
+    CELL ID: 3, Label: nr0
+    Multiset: a
+
+    CELL ID: 4, Label: nr1
+    Multiset: a
+
+    CELL ID: 5, Label: nr2
+    Multiset: a
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: #
+
+-----------------------------------------------
+
+    STEP: 4
+
+    Rules selected for CELL ID: 2, Label: buff2
+    1 * #2 [a]'buff2 --> [a]
+
+    Rules selected for CELL ID: 3, Label: nr0
+    1 * #3 [a]'nr0 --> [a]
+
+    Rules selected for CELL ID: 4, Label: nr1
+    1 * #4 [a]'nr1 --> [a]
+
+    Rules selected for CELL ID: 5, Label: nr2
+    1 * #5 [a]'nr2 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 4
+    TIME: 0.05 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 23836
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: #
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*2
+
+    CELL ID: 5, Label: nr2
+    Multiset: a
+
+    CELL ID: 6, Label: nr3
+    Multiset: a
+
+    CELL ID: 7, Label: nr4
+    Multiset: a
+
+-----------------------------------------------
+
+    STEP: 5
+
+    Rules selected for CELL ID: 1, Label: buff1
+    1 * #1 [a]'buff1 --> [a]
+
+    Rules selected for CELL ID: 5, Label: nr2
+    1 * #5 [a]'nr2 --> [a]
+
+    Rules selected for CELL ID: 6, Label: nr3
+    1 * #6 [a]'nr3 --> [a]
+
+    Rules selected for CELL ID: 7, Label: nr4
+    1 * #7 [a]'nr4 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 5
+    TIME: 0.112 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 23140
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: #
+
+    CELL ID: 2, Label: buff2
+    Multiset: a
+
+    CELL ID: 3, Label: nr0
+    Multiset: a
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*3
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: a
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*2
+
+    ENVIRONMENT: a
+
+-----------------------------------------------
+
+    STEP: 6
+
+    Rules selected for CELL ID: 2, Label: buff2
+    1 * #2 [a]'buff2 --> [a]
+
+    Rules selected for CELL ID: 3, Label: nr0
+    1 * #3 [a]'nr0 --> [a]
+
+    Rules selected for CELL ID: 6, Label: nr3
+    1 * #6 [a]'nr3 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 6
+    TIME: 0.126 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 29462
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*5
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*3
+
+    ENVIRONMENT: a
+
+-----------------------------------------------
+
+    STEP: 7
+
+    Rules selected for CELL ID: 1, Label: buff1
+    1 * #1 [a]'buff1 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 7
+    TIME: 0.132 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 29113
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: #
+
+    CELL ID: 2, Label: buff2
+    Multiset: a
+
+    CELL ID: 3, Label: nr0
+    Multiset: a
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*5
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*3
+
+    ENVIRONMENT: a
+
+-----------------------------------------------
+
+    STEP: 8
+
+    Rules selected for CELL ID: 2, Label: buff2
+    1 * #2 [a]'buff2 --> [a]
+
+    Rules selected for CELL ID: 3, Label: nr0
+    1 * #3 [a]'nr0 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 8
+    TIME: 0.134 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 28939
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*6
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*3
+
+    ENVIRONMENT: a
+
+-----------------------------------------------
+
+    STEP: 9
+
+    Rules selected for CELL ID: 1, Label: buff1
+    1 * #1 [a]'buff1 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 9
+    TIME: 0.137 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 28590
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: #
+
+    CELL ID: 2, Label: buff2
+    Multiset: a
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*6
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*3
+
+    ENVIRONMENT: a
+
+-----------------------------------------------
+
+    STEP: 10
+
+    Rules selected for CELL ID: 2, Label: buff2
+    1 * #2 [a]'buff2 --> [a]
+
+***********************************************
+
+    CONFIGURATION: 10
+    TIME: 0.139 s.
+    MEMORY USED: 31680
+    FREE MEMORY: 28416
+    TOTAL MEMORY: 494976
+
+    CELL ID: 0, Label: environment
+    Multiset: a
+
+    CELL ID: 1, Label: buff1
+    Multiset: a
+
+    CELL ID: 2, Label: buff2
+    Multiset: #
+
+    CELL ID: 3, Label: nr0
+    Multiset: #
+
+    CELL ID: 4, Label: nr1
+    Multiset: a*6
+
+    CELL ID: 5, Label: nr2
+    Multiset: #
+
+    CELL ID: 6, Label: nr3
+    Multiset: #
+
+    CELL ID: 7, Label: nr4
+    Multiset: a*3
+
+    ENVIRONMENT: a
+

@@ -1,0 +1,7 @@
+a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a0a1a1a0a1a0a1a0
+a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0a1a1a0
+4
+a->a$a2->a
+a->a
+a->a$a2->a
+a->a
