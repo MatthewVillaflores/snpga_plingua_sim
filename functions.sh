@@ -17,7 +17,6 @@ function parseAndSimulateSNP
 
 		log "Got bit string $line"
 		bit_string=`echo $line | tr -d '[:space:]'`
-		echo "bit string length: ${#bit_string}"
 		num_neurons=`sed '3q;d' $SNP_CONFIG_FILE`
 		num_neurons=`expr $num_neurons`
 		log "Number of Neurons: $num_neurons"
@@ -59,13 +58,6 @@ function parseAndSimulateSNP
 		echo "	$snp_neurons" >> $pli_file
 
 		####
-		# Input/Output Neuron
-		echo "	@min = ${neuron_labels[0]};" >> $pli_file
-		num_neurons_m1=`expr $num_neurons - 1`
-		echo "	@mout = ${neuron_labels[$num_neurons_m1]};" >> $pli_file
-		output_neuron_label=${neuron_labels[$num_neurons_m1]}
-
-		####
 		# Form Rules
 		#
 		n_ctr=0
@@ -80,24 +72,44 @@ function parseAndSimulateSNP
 
 			n_ctr=`expr $n_ctr + 1`
 		done	
-		
-		echo "	[a*2 --> a*2]'$output_neuron_label :: 0;" >> $pli_file
-		echo "  [a*3 --> a*3]'$output_neuron_label :: 0;" >> $pli_file
-		echo "  [a*4 --> a*4]'$output_neuron_label :: 0;" >> $pli_file
 
 		####
-		# Form Synapses
+		# Input/Output Neuron
+		num_neurons_m1=`expr $num_neurons - 1`
+		echo "	@mout = ${neuron_labels[$num_neurons_m1]};" >> $pli_file
+		output_neuron_label=${neuron_labels[$num_neurons_m1]}
+
+		####
+		# Form Synapses/input/output neuron
 		#
 		bits_counter=0
 		echo "$bit_string" | grep -o . | while read bit
 		do
 			if [ "$bit" == "1" ]
 			then
-				lneuron_i=`expr $bits_counter / $num_neurons`
-				rneuron_i=`expr \( $bits_counter % $num_neurons \)`
-				lneuron_label=${neuron_labels[$lneuron_i]}
+				lneuron_i=`expr $bits_counter / \( $num_neurons + 1 \)`
+				rneuron_i=`expr $bits_counter % \( $num_neurons + 1 \)`
+								
+				# input neuron
+				if [[ $lneuron_i == 0 ]]
+				then
+						echo "	@min = ${neuron_labels[$rneuron_i]};" >> $pli_file
+						log "Input neuron: ${neuron_labels[$rneuron_i]}"
+						continue
+				fi
+
+				# output neuron
+				if [[ $rneuron_i == $num_neurons ]]
+				then 
+						nneuron_i=`expr $lneuron_i - 1`
+						echo "	@mout = ${neuron_labels[$nneuron_i]};" >> $pli_file
+						log "Output neuron: ${neuron_labels[$nneuron_o]}"
+						continue
+				fi
+				nneuron_i=`expr $lneuron_i - 1`
+				lneuron_label=${neuron_labels[$nneuron_i]}
 				rneuron_label=${neuron_labels[$rneuron_i]}
-			
+
 				echo "	@marcs += ($lneuron_label, $rneuron_label);" >> $pli_file	
 			fi
 			bits_counter=`expr $bits_counter + 1`
