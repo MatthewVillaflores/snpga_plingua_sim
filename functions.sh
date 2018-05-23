@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO set input/output neurons (no more virtual neuron)
+
 # $1 = file input
 function parseAndSimulateSNP 
 {
@@ -16,7 +18,7 @@ function parseAndSimulateSNP
 		log "Got bit string $line"
 		bit_string=`echo $line | tr -d '[:space:]'`
 		echo "bit string length: ${#bit_string}"
-		num_neurons=$(bc <<< "scale=0; sqrt(${#bit_string})")
+		num_neurons=`sed '3q;d' $SNP_CONFIG_FILE`
 		num_neurons=`expr $num_neurons`
 		log "Number of Neurons: $num_neurons"
 
@@ -66,9 +68,17 @@ function parseAndSimulateSNP
 		####
 		# Form Rules
 		#
+		n_ctr=0
 		for i in ${neuron_labels[@]}
 		do
-			echo "	$DEFAULT_RULE" | sed -e 's/NEURON_LABEL/'"$i"'/g' >> $pli_file
+			cfg_rule_line_n=`expr $n_ctr + 4`
+			cfg_rule=`sed $cfg_rule_line_n'q;d' $SNP_CONFIG_FILE`
+			for rule in `echo "$cfg_rule" | sed -s 's/\\$/\n/g'`
+			do
+				echo $rule | sed -e 's/\(.*\)/\[\1\]/g' | sed -e 's/\(a\)\([0-9]\)/\1*\2/g' | sed -e 's/-/--/g' | sed -e "s/$/'$i :: 0;/" >> $pli_file
+			done
+
+			n_ctr=`expr $n_ctr + 1`
 		done	
 		
 		echo "	[a*2 --> a*2]'$output_neuron_label :: 0;" >> $pli_file
@@ -136,10 +146,37 @@ function log
 
 function cleanPliFolders
 {
-	mv $PLI_FILES_FOLDER/*.pli $PLI_FILES_FOLDER/old/
+	curr_dir=`pwd`
+	cd "$PLI_FILES_FOLDER"
+	clean_date=`date "+%Y%m%d%H%M%S"`
+	for filename in *.pli; do mv "$filename" "$filename.$clean_date"; done
+	for filename in *.pli*; do tar czf "$filename.gz" "$filename"; done
+	mv *.gz old/.
+	rm *.pli*
+	cd "$curr_dir"
 }
 
 function cleanSimulationOutputFolder
 {
-	mv "$PLI_SIM_OUTPUT_FOLDER/"* $PLI_SIM_OUTPUT_FOLDER/old/
+	curr_dir=`pwd`
+	cd "$PLI_SIM_OUTPUT_FOLDER"
+	clean_date=`date "+%Y%m%d%H%M%S"`
+	for filename in *.log; do mv "$filename" "$filename.$clean_date"; done
+	for filename in *.log*; do tar czf "$filename.gz" "$filename"; done
+	mv *.gz old/.
+	rm *.log*
+
+	for filename in *.txt; do mv "$filename" "$filename.$clean_date"; done
+	for filename in *.txt*; do tar czf "$filename.gz" "$filename"; done
+	mv *.gz old/.
+	rm *.txt*
+
+	cd "$curr_dir"
+}
+
+function archiveInputFile
+{
+	curr_date=`date "+%Y%m%d%H%M%S"`
+	cp "$1" "$PLI_FILES_FOLDER/old/$1.$curr_date"	
+
 }

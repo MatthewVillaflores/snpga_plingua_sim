@@ -20,6 +20,7 @@ input_file="$1"
 output_file="$2"
 
 parseAndSimulateSNP "$input_file"
+archiveInputFile "$input_file"
 produceSpikeTrainOutput "$output_file"
 
 end_time=`date "+%Y-%m-%d %H:%M:%S"`
