@@ -134,10 +134,9 @@ function parseAndSimulateSNP
 		####
 		#
 		# Run plingua core
-		execution_steps=10
-		log "Running P-Lingua simulation"
+		execution_steps=`expr $num_neurons + $in_spike_count`
+		log "Running P-Lingua simulation with $execution_steps steps"
 		java -jar $PLINGUA_JAR plingua_sim -pli $pli_file -o $PLI_SIM_OUTPUT_FOLDER/$PLI_FILENAME.$file_suffix.pli.out -st $execution_steps > $PLI_SIM_OUTPUT_FOLDER/$PLI_FILENAME.$file_suffix.pli.log
-
 
 	done < "$1"
 
@@ -147,7 +146,50 @@ function parseAndSimulateSNP
 function produceSpikeTrainOutput
 {
 	> "$1"
-	tail -n15 "$PLI_SIM_OUTPUT_FOLDER/"*.log | grep -A2 'Binary Sequence' | grep -o '{.*}' | sed -e 's/{.*\[//g' | sed -e 's/\]}//g' | sed -e 's/^/a/g' | sed -e 's/, /a/g' >> "$1"
+
+	# For each simulation, produce 1 ouput spike train
+	#
+	for file in "$PLI_SIM_OUTPUT_FOLDER/"*.log
+	do
+		log "Getting results from $file"
+		(
+		IFS=$'\n'
+
+		# For each output spike trains (multiple output neuron)
+		# Sum all spikes into 1 spike train
+		#
+		export r_output_spike_train=[]
+		output_spike_trains=($(tac $file | grep -B2 -m1 'Binary Sequence' | head -n1 | sed -e 's/^[^=]*=//g' | sed -e 's/,*=/\n/g' | sed -e 's/, [[:digit:]]\+$//g' | sed -e 's/}$//g'))
+		for spike_train in ${output_spike_trains[@]}
+		do
+			spike_train_a=($(echo $spike_train | sed -e 's/^\[//g' | sed -e 's/\]$//g' | tr -d '[:space:]' | sed -e 's/,/\n/g'))
+			spike_ctr=0
+				
+			log `echo "Found spike train = ${spike_train_a[@]}"`
+			# For each spike in spike_train, get sum
+			#
+			for spike in ${spike_train_a[@]}
+			do
+				# Init array
+				if [[ "$spike_ctr" == "0" && "${r_output_spike_train[$spike_ctr]}" == "[]" ]]
+				then	
+					r_output_spike_train[$spike_ctr]=0
+				fi
+
+				if [[ ${r_output_spike_train[$spike_ctr]} == "" ]]
+				then 
+					r_output_spike_train[$spike_ctr]=0
+				fi
+			
+				# Sum spikes
+				r_output_spike_train[$spike_ctr]=`expr ${r_output_spike_train[$spike_ctr]} + $spike`
+				spike_ctr=`expr $spike_ctr + 1`
+			done
+		done
+		log `echo "Result Spike Train: ${r_output_spike_train[@]}"`
+		echo "${r_output_spike_train[@]}" | sed -e 's/ /a/g' | sed -e 's/^/a/g'	>> "$1"
+		)
+	done
 }
 
 function log
@@ -189,6 +231,5 @@ function cleanSimulationOutputFolder
 function archiveInputFile
 {
 	curr_date=`date "+%Y%m%d%H%M%S"`
-	cp "$1" "$PLI_FILES_FOLDER/old/$1.$curr_date"	
-
+	cp "$1" "$PLI_FILES_FOLDER/old/$curr_date.spike_train.in"	
 }
